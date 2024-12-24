@@ -1,0 +1,195 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "Laporan API LaporPak",
+        "version": "1.0.0"
+    },
+    "paths": {
+        "/reports": {
+            "get": {
+                "tags": [
+                    "Reports"
+                ],
+                "summary": "Get Reports",
+                "description": "Mengambil daftar laporan dengan opsi filter",
+                "operationId": "5233922cf64408a482b08858b089028e",
+                "parameters": [
+                    {
+                        "name": "start_date",
+                        "in": "query",
+                        "description": "Tanggal mulai filter laporan (format: YYYY-MM-DD)",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "end_date",
+                        "in": "query",
+                        "description": "Tanggal akhir filter laporan (format: YYYY-MM-DD)",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "category",
+                        "in": "query",
+                        "description": "ID kategori untuk filter laporan",
+                        "required": false,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    },
+                    {
+                        "name": "region",
+                        "in": "query",
+                        "description": "Nama region untuk filter laporan",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "priority",
+                        "in": "query",
+                        "description": "Prioritas laporan (Rendah, Menengah, Tinggi)",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "status",
+                        "in": "query",
+                        "description": "Status laporan (Pending, Accepted, In Progress, Completed, Rejected)",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Ok",
+                        "content": {
+                            "application/json": {
+                                "schema": {},
+                                "example": {
+                                    "success": true,
+                                    "message": "Berhasil mengambil laporan",
+                                    "data": [
+                                        {
+                                            "id": 1,
+                                            "user_id": 2,
+                                            "category_id": 1,
+                                            "code": "RPT-001",
+                                            "title": "Laporan A",
+                                            "description": "Deskripsi laporan A",
+                                            "region": "Jakarta",
+                                            "priority": "Tinggi",
+                                            "status": "Completed",
+                                            "created_at": "2024-11-01T07:38:06.000000Z"
+                                        },
+                                        {
+                                            "id": 2,
+                                            "user_id": 3,
+                                            "category_id": 2,
+                                            "code": "RPT-002",
+                                            "title": "Laporan B",
+                                            "description": "Deskripsi laporan B",
+                                            "region": "Bandung",
+                                            "priority": "Menengah",
+                                            "status": "In Progress",
+                                            "created_at": "2024-11-02T07:38:06.000000Z"
+                                        }
+                                    ]
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/regions": {
+            "get": {
+                "tags": [
+                    "Regions"
+                ],
+                "summary": "Get Regions",
+                "description": "Mengambil daftar region yang terdaftar berdasarkan user dengan role Government",
+                "operationId": "6378c4d6a832063fdb4ea505a46cb608",
+                "responses": {
+                    "200": {
+                        "description": "Ok",
+                        "content": {
+                            "application/json": {
+                                "schema": {},
+                                "example": {
+                                    "success": true,
+                                    "message": "Berhasil mengambil daftar region",
+                                    "data": [
+                                        {
+                                            "region": "Jakarta"
+                                        },
+                                        {
+                                            "region": "Bandung"
+                                        }
+                                    ]
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/categories": {
+            "get": {
+                "tags": [
+                    "Categories"
+                ],
+                "summary": "Get Categories",
+                "description": "Mengambil semua kategori",
+                "operationId": "938fc8d37ddf2d949097982f2465e0dc",
+                "responses": {
+                    "200": {
+                        "description": "Ok",
+                        "content": {
+                            "application/json": {
+                                "schema": {},
+                                "example": {
+                                    "success": true,
+                                    "message": "Berhasil mengambil kategori",
+                                    "data": [
+                                        {
+                                            "id": 1,
+                                            "name": "Kategori A"
+                                        },
+                                        {
+                                            "id": 2,
+                                            "name": "Kategori B"
+                                        }
+                                    ]
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "tags": [
+        {
+            "name": "Reports",
+            "description": "Reports"
+        },
+        {
+            "name": "Regions",
+            "description": "Regions"
+        },
+        {
+            "name": "Categories",
+            "description": "Categories"
+        }
+    ]
+}
